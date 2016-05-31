@@ -15,5 +15,9 @@ class QA extends Model
         //這問題是只屬於一個買家的
         return $this->belongsTo(User::class);
     }
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 
 }

@@ -21,7 +21,10 @@ class Book extends Model
         'img',
         'user_id'
     ];
-
+    public function QAs()
+    {
+        return $this->hasMany(QA::class);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -35,6 +35,8 @@
          <a href="{{url('book/'.$books->id.'/'.$books->user_id)}}" class="btn btn-success">我要購買</a>
 
 
+
+
     </div>
 </div>
 <div class="col-md-8 col-md-offset-2 view" style="">
@@ -42,22 +44,21 @@
         <?php
             $count = count($qas);
         ?>
-        @foreach($qas as $qa)
+        @foreach($books->QAs as $q)
             <div class="question">
                 <span>問題 {{$count--}} / </span>
-                <span style="color: #2e6da4"> {{$qa->user->email}} </span>
-                <span style="color:#DDDDDD">  ({{$qa->created_at}}) </span>
+                <span style="color: #2e6da4"> {{$q->user->email}} </span>
+                <span style="color:#DDDDDD">  ({{$q->created_at}}) </span>
                 <br>
-                <div style="color:#111;padding-left: 60px;"><?php echo $qa->question?></div>
+                <div style="color:#111;padding-left: 60px;"><?php echo $q->question?></div>
                 <br>
             </div>
-            @if($qa->answer!="")
+            @if($q->answer!="")
             <div class="answer">
                 <span>賣家回覆： </span>
-
-
             </div>
             @endif
+
                 <br>
                 <br>
                 <hr>

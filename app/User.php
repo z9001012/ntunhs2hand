@@ -22,8 +22,5 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->hasMany(Book::class);
     }
-    public function qas()
-    {
-        return $this->hasMany(QA::class);
-    }
+
 }
