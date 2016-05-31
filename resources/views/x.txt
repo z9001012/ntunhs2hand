@@ -1,0 +1,46 @@
+
+
+
+登入->
+＊登入需要用一個叫“SESSION”的東西去存取帳號
+  在每一頁的最前面都要寫 <?php session_start(); ?>
+  才能開啟session的功能
+
+建立一個登入表單
+	1.帳號
+	2.密碼
+	3.按鈕
+
+送出之後進行$sql
+$user = $_POST["user"]; // form送出帳號
+$ps   = $_POST["password"]; //form送出的密碼
+
+$sql = "select * from user where user= $user and ps = $ps"; 
+//查詢資料表裡面有沒有此user，帳號密碼都打對
+
+$result = mysql_query($sql); //執行
+$row = mysql_num_rows($result); //抓到幾筆符合
+//如果有一筆，就代表資料表有這個user 而且帳號密碼都打對
+if($row==1)
+{
+	$_SESSION["user"] = $user; //存進session裡面
+}
+else
+{
+	echo "帳號密碼錯誤";
+}
+
+
+
+
+
+登出->
+到logout.php
+<?php 
+session_start();                //開啟Session
+session_destroy();              //清除Session
+header("Location:login.php");   //導向到首頁 或 登入頁面
+?>
+
+
+
