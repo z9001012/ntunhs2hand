@@ -19,6 +19,63 @@ use Illuminate\Support\Facades\View;
 
 class SaleController extends Controller
 {
+    public function sendOrder($bookID)
+    {
+        $book = Book::find($bookID);
+        if(!$book )
+        {
+            return view("errors.404");
+        }
+        $salerID = $book->user->id;
+        $salerEmail = $book->user->email;
+        $salerName = $book->user->name;
+
+        $buyerID = Auth::user()->id;
+        $buyerEmail = Auth::user()->email;
+        $buyerName = Auth::user()->name;
+
+        $this->post = [
+                "bookID"    => $bookID,
+                "salerEmail"   => $salerEmail,
+                "salerID"   => $salerID,
+                "salerName" => $salerName,
+                "buyerID"=> $buyerID,
+                "buyerEmail"=> $buyerEmail,
+                "buyerName" => $buyerName
+        ];
+
+//        dd($post);
+
+
+//        dd($post);
+        //寄信
+        Mail::queue("mails.orderMail",$this->post, function($message)
+        {
+
+
+            order::create([
+                'book_id' => $this->post["bookID"],
+                'user_id' => $this->post["buyerID"]
+            ]);
+
+            $email = $this->post["salerEmail"]."@ntunhs.edu.tw";
+
+            $message->to($email)
+                ->subject('國北護二手書拍賣網');
+        });
+
+        Mail::queue("mails.orderMail2Buyer",$this->post, function($message)
+        {
+
+            $email = $this->post["buyerEmail"]."@ntunhs.edu.tw";
+            $message->to($email)
+                ->subject('國北護二手書拍賣網');
+        });
+
+        return Redirect("commail");
+    }
+
+
 
     public function answerQ($questionID)
     {
@@ -90,59 +147,6 @@ class SaleController extends Controller
         return Redirect::back();
 
     }
-    public function sendMail()
-    {
-
-
-//        $book = $user->books->find($id);
-//
-//        if(!$book)
-//        {
-//            return view("errors.404");
-//        }
-        $rules = [
-            'note' => 'required'
-        ];
-        $attribute = array(
-            'note' => '詢問事項'
-        );
-        $post = Input::all();
-        $this->checkUserAndBook($post["book_id"],$post["id"]);
-        $saleUser = User::find($post["id"]);
-        $post["saleEmail"] = $saleUser->email;
-        $post["saleName"] = $saleUser->name;
-//        dd($post["note"]);
-        $validator = Validator::make($post,$rules);
-        $validator->setAttributeNames($attribute);
-        //是否有錯誤
-        if($validator->fails())
-        {
-            return Redirect::back()->witherrors($validator);
-        }
-//        dd($post);
-        //寄信
-        Mail::queue("mails.orderMail",$post, function($message)
-        {
-            $saleUser = User::find(Input::get("id"));
-            if(!$saleUser)
-            {
-                return view("errors.404");
-            }
-            order::create([
-                'book_id' => Input::get('book_id'),
-                'user_id' => Input::get("id"),
-                'note' => strip_tags($note)
-            ]);
-
-            $email = $saleUser->email."@ntunhs.edu.tw";
-
-            $message->to($email)
-                ->subject('國北護二手書拍賣網');
-        });
-
-
-        return Redirect("commail");
-    }
 
 
     public function cart($book_id,$user_id)
@@ -182,59 +186,4 @@ class SaleController extends Controller
         return View("books.index")->withbooks($books);
     }
 
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

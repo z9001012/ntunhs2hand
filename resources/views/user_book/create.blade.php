@@ -27,8 +27,8 @@
                 <option value="{{$index+1}}" {{( old('depart') == $index+1 ? "selected":"")}}>{{$depart}}</option>
             @endforeach
             </select>
-            <p align="left">請輸入總書量</p>
-            <input type="number"  name="total" id="total" value="{{ old('total') | 0 }}" min="1" class="form-control"/>
+            {{--<p align="left">請輸入總書量</p>--}}
+            {{--<input type="number"  name="total" id="total" value="{{ old('total') | 0 }}" min="1" class="form-control"/>--}}
             <p align="left">請輸入原價(元)</p>
             <input type="number" required name="price" id="price" value="{{ old('price') | 0 }}" min="0" step="5" class="form-control"/>
             <p align="left">請輸入二手價(元)</p>

@@ -76,7 +76,7 @@ class BookController extends Controller
             'author' => 'required',
             'isnew' => 'required',
             'depart' => 'required',
-            'total' => 'required',
+//            'total' => 'required',
             'price' => 'required',
             'onsale' => 'required',
             'cover' => 'required|image'
@@ -86,7 +86,7 @@ class BookController extends Controller
             'author' => '作者',
             'isnew' => '書況',
             'depart_id' => '系所',
-            'total' => '總書量',
+//            'total' => '總書量',
             'price' => '原價',
             'onsale' => '二手價',
             'cover' => '封面圖片'
@@ -106,11 +106,11 @@ class BookController extends Controller
             Book::create([
                 'name'   => $post["name"],
                 'author' => $post["author"],
-                'sales'  => $post['total'],//賣出多少
+//                'sales'  => $post['total'],//賣出多少
                 'type'   => 1, //販賣中
                 'isnew'  => $post["isnew"],//新/二手
                 'depart_id' => $post["depart"],//系
-                'total'  => $post['total'],
+//                'total'  => $post['total'],
                 'price'  => $post['price'],
                 'onsale' => $post['onsale'],
                 'img'    => $path,

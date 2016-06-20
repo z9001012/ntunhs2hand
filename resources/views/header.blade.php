@@ -5,7 +5,6 @@
 		</a>
 		<div class="head-nav">
 			<ul class="cl-effect-3">
-				<li class="active"><a href="{{ URL('/') }}">Home</a></li>
 				<li><a href="{{ URL('/') }}">二手書拍賣</a></li>
 				<li><a href="{{ URL('/') }}">遺失物尋找</a></li>
 			</ul>
@@ -25,7 +24,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="{{url('mybooks')}}">我的書櫃</a></li>
 						<li><a href="{{url('mybooks')}}">遺失物</a></li>
-						<li><a href="#">修改基本資料</a></li>
+						{{--<li><a href="#">修改基本資料</a></li>--}}
 						<li><a href="{{ url('logout')}}">登出</a></li>
 					</ul>
 				</div>

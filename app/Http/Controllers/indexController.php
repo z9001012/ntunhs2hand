@@ -19,7 +19,7 @@ class indexController extends Controller
      */
     public function indexDepart($depart)
     {
-        $books = Book::where("type","1")->where("depart",$depart)->orderBy('created_at','desc')->paginate(4);
+        $books = Book::where("type","1")->where("depart_id",$depart)->orderBy('created_at','desc')->paginate(4);
         return View("view")->withbooks($books);
     }
     public function index()

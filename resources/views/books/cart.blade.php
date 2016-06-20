@@ -28,7 +28,11 @@
         </tr>
         <tr>
             <td colspan="4">
-                <button class="btn btn-success btn-block" type="submit" id="btsubmit">留言</button>
+                <span class="active">系統將會把您的信箱與姓名寄給賣家，等待賣家與您聯絡</span>
+                <form action="{{ url("/sendOrder",$books->id) }}" id="form" method="post">
+                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+                    <button class="btn btn-success btn-block" type="submit" id="btsubmit">確定</button>
+                </form>
             </td>
         </tr>
 

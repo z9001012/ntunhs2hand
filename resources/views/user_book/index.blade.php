@@ -5,11 +5,11 @@
     Hello! 你的書櫃有<span>{{count($user->books)}}</span>本書.
 </h1>
 <div class=" col-md-offset-2 col-md-8">
-   <a href="{{URL("mybooks/create")}}" class="btn"><span>加入新書</span></a>
+   <a href="{{URL("mybooks/create")}}" class="btn"><span>加入二手書</span></a>
    <br/>
     <div class="panel panel-default">
         <div class="panel-heading">
-        <h3>我的書櫃</h3>
+        <h3>我的二手書櫃</h3>
     </div>
 
     @if(count($user->books)!=0)
@@ -19,7 +19,6 @@
             <td><span>系所</span></td>
             <td><span>書名</span></td>
             <td><span>出售價格</span></td>
-            <td><span>存貨/總共</span></td>
             <td></td>
             <td></td>
         </tr>
@@ -33,12 +32,12 @@
                 </td>
                 <td>{{$book->name}}</td>
                 <td>{{$book->price}}</td>
-                <td>{{$book->sales}} / {{$book->total}}</td>
+
                 <td>
                 @if($book->type)
                     <a href="{{URL("mybooks/".$book->id."/down") }}" class="btn btn-success">販賣中</a>
                 @else
-                    <a href="{{URL("mybooks/".$book->id."/up") }}" class="btn btn-danger">停賣</a>
+                    <a href="{{URL("mybooks/".$book->id."/up") }}" class="btn btn-danger">已賣出</a>
                 @endif
                 </td>
                 <td>
