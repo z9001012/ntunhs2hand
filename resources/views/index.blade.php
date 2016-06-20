@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>北護二手書系統</title>
+
 	<link rel="icon" href="{{asset('images/favicon.ico')}}" type="image/x-icon" />
 	<script src="{{ asset('js/jquery.min.js')}}"></script>
 	<link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all">	

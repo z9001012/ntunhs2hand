@@ -19,12 +19,17 @@
         <tr>
             <td><img src="{{ asset("cover/".$books->img)}}" class="img-thumbnail" width="100"/></td>
             <td style="vertical-align: middle">{{$books->name}}</td>
-            <td style="vertical-align: middle">{{$books->total}}</td>
+            <td style="vertical-align: middle">1</td>
             <td style="vertical-align: middle">{{$books->onsale}} 元</td>
         </tr>
         <tr>
             <td colspan="3" align="right">應付金額：</td>
-            <td align="left"><span>{{$books->onsale * $books->total}} 元</span></td>
+            <td align="left"><span>{{$books->onsale}} 元</span></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <button class="btn btn-success btn-block" type="submit" id="btsubmit">留言</button>
+            </td>
         </tr>
 
 

@@ -92,6 +92,12 @@ body{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+.navbar-fixed-top .navbar-brand {
+	font-size: 2em;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
 .head-nav ul li {
 	display: inline-block;
 	margin: 0 .5em;
@@ -102,14 +108,17 @@ body{
 	font-weight: 400;
 	font-size: 16px;
 }
-.head-nav ul li a:hover, .head-nav ul li.active a{
-	color:#d42819;
+.navbar-nav ul{
+	font-size: 24px !important;
+}
+.navbar-nav ul li a:hover, .navbar-nav ul li.active a{
+	color:#d42819 !important;
 }
 ul a:hover,
 ul a:focus {
-	outline: none;
-	color: #d42819;
-	text-decoration: none;
+	outline: none !important;
+	color: #d42819 !important;
+	text-decoration: none !important;
 }
 /* Effect 3: bottom line slides/fades in */
 .cl-effect-3 a {
@@ -259,6 +268,10 @@ i.zoom {
 	-moz-border-radius: 0.4em;
 	-o-border-radius: 0.4em;
 	-ms-border-radius: 0.4em;
+}
+.header-list{
+	margin: 30px !important;
+	font-size: 20px !important;
 }
 .content-pagenation li a:hover{
 	color: #d42819;
@@ -1118,7 +1131,8 @@ a.more:hover{
 	background: #d42819;
 }
 /*--responsive design--*/
-@media (max-width:1024px){	
+@media (max-width:1024px){
+
 .head-nav {
 	margin: 0px 0 0 12em;
 }
@@ -1186,7 +1200,8 @@ h2.post_title {
 }
 }
 /*--responsive design--*/
-@media (max-width:768px){	
+@media (max-width:768px){
+
 .head-nav ul li{
 	display:block;
 	float:none;
@@ -1305,7 +1320,8 @@ h2.post_title {
 }
 }
 /*--responsive design--*/
-@media (max-width:640px){	
+@media (max-width:640px){
+
 .welcome h1 {
 	font-size: 1.4em;
 }
@@ -1378,7 +1394,7 @@ h2.post_title {
 	font-size: 1em;
 }
 #portfoliolist .portfolio {
-	width: 50%;
+	width: 80%;
 }
 .head-nav ul li a {
 	font-size: 0.9em;
@@ -1473,7 +1489,7 @@ margin-right:0;
 }
 }
 /*--responsive design--*/
-@media (max-width:320px){	
+@media (max-width:320px){
 .social {
 	margin-top: 6px;
 	display: none;

@@ -31,7 +31,8 @@
         </b><br/>
          <span class="view_title">原價：</span><b><del>{{$books->price}}</del> 元</b><br/>
          <span class="view_title">二手價：</span><b><span>{{$books->onsale}}</span> 元</b><br/>
-         <span class="view_title">已賣出/總書量：</span><b>{{$books->total}}/{{$books->sales}}</b><br/><br/><br/>
+         {{--<span class="view_title">已賣出/總書量：</span><b>{{$books->total}}/{{$books->sales}}</b><br/><br/><br/>--}}
+        <br>
          <a href="{{url('book/'.$books->id.'/'.$books->user_id)}}" class="btn btn-success">我要購買</a>
 
 
@@ -42,9 +43,9 @@
 <div class="col-md-8 col-md-offset-2 view" style="">
     <div class="col-md-10 col-md-offset-2  content">
         <?php
-            $count = count($qas);
+            $count = count($books->QAs);
         ?>
-        @foreach($books->QAs as $q)
+        @foreach($books->QAs()->orderBy("id","DESC")->get() as $q)
             <div class="question">
                 <span>問題 {{$count--}} / </span>
                 <span style="color: #2e6da4"> {{$q->user->email}} </span>
@@ -53,14 +54,27 @@
                 <div style="color:#111;padding-left: 60px;"><?php echo $q->question?></div>
                 <br>
             </div>
-            @if($q->answer!="")
-            <div class="answer">
-                <span>賣家回覆： </span>
-            </div>
-            @endif
 
+            <div class="answer">
+
+
+            @if($q->answer!="")
+                <span>賣家回覆</span><br>
+                    <span style="color:#DDDDDD">  ({{$q->updated_at}}) </span>
+                    <div style="color:#111;padding-left: 60px;"><?php echo $q->answer?></div>
+            @else
+                @if(Auth::id() == $books->user_id)
+                <form action="{{ url("/answerQ",$q->id) }}" method="post">
+                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+                    <input name="id" type="hidden" value="{{$q->id}}"/>
+                    <textarea name="note" id="note" cols="5" rows="5" style="width:100%" maxlength="250" placeholder="請留下您想回覆買家的話（250字以內）"></textarea>
+                    <br>
+                    <button class="btn btn-primary btn-block" type="submit" id="sendbtn">回覆</button>
+                </form>
+                @endif
+            @endif
                 <br>
-                <br>
+            </div>
                 <hr>
         @endforeach
     </div>
@@ -68,7 +82,7 @@
 <div class="col-md-8 col-md-offset-2 view" style="">
     <div class="col-md-10 col-md-offset-2  content">
 
-        <form action="{{ url("/sendQ",[$books->id,$books->user_id]) }}" method="post">
+        <form action="{{ url("/sendQ",[$books->id,Auth::user()->id]) }}" id="form" method="post">
             <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
             <input name="id" type="hidden" value="{{$books->user_id}}"/>
             <input type="hidden" name="book_id" value="{{$books->id}}"/>
@@ -79,7 +93,7 @@
             <br>
             <img src="{{URL::to('captcha')}}">
             <input type="text" name="text_input" id="text_input">
-        <button class="btn btn-success btn-block" type="submit" id="sendbtn">留言</button>
+        <button class="btn btn-success btn-block" type="submit" id="btsubmit">留言</button>
         </form>
     </div>
 </div>

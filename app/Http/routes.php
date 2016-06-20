@@ -7,6 +7,7 @@ Route::get('/depart/{depart}',"indexController@indexDepart");
 Route::get('/book/{id}','SaleController@index');
 Route::get('book/{book_id}/{user_id}',['uses'=>'SaleController@cart','middleware'=>'auth']);
 Route::post('sendQ/{book_id}/{user_id}',['uses'=>'SaleController@sendQ','middleware'=>'auth']);
+Route::post('answerQ/{q_id}',['uses'=>'SaleController@answerQ','middleware'=>'auth']);
 
 
 Route::post('/sendOrder','SaleController@sendMail');

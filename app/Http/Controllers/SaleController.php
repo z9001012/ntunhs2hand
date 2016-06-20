@@ -19,6 +19,47 @@ use Illuminate\Support\Facades\View;
 
 class SaleController extends Controller
 {
+
+    public function answerQ($questionID)
+    {
+        $rules = [
+            'note'       => 'required'
+        ];
+        $attribute = array(
+            'note'       => '詢問事項'
+        );
+        $data = Input::all();
+        $validator = Validator::make($data,$rules);
+        $validator->setAttributeNames($attribute);
+        $note = nl2br(strip_tags($data["note"]));
+
+        //是否有錯誤
+        if($validator->fails())
+        {
+            return Redirect::back()->witherrors($validator);
+        }
+        //CHECK QUSTION AND USER IS MATCH
+        $checkQustionAndUser = $this->checkQustionAndUser($questionID);
+        if(!$checkQustionAndUser)
+        {
+            return view("errors.404");
+        }
+        $qa = QA::find($questionID);
+        $qa->answer = $note;
+        $qa->save();
+        return Redirect::back();
+
+    }
+    public function checkQustionAndUser($questionID)
+    {
+        $this->salerID = Auth::user()->id;
+        $QA = QA::find($questionID);
+        if($QA->user_id != $this->salerID)
+        {
+            return 0;
+        }
+        return 1;
+    }
     public function sendQ($book_id,$user_id)
     {
         $rules = [
@@ -32,13 +73,14 @@ class SaleController extends Controller
         $data = Input::all();
         $validator = Validator::make($data,$rules);
         $validator->setAttributeNames($attribute);
-        $note = nl2br($data["note"]);
+        $note = nl2br(strip_tags($data["note"]));
 
         //是否有錯誤
         if($validator->fails())
         {
             return Redirect::back()->witherrors($validator);
         }
+        //這邊這邊這邊2015/06/01
         $this->checkUserAndBook($user_id,$book_id);
         QA::create([
             'user_id' => $user_id,
@@ -89,7 +131,7 @@ class SaleController extends Controller
             order::create([
                 'book_id' => Input::get('book_id'),
                 'user_id' => Input::get("id"),
-                'note' => $note
+                'note' => strip_tags($note)
             ]);
 
             $email = $saleUser->email."@ntunhs.edu.tw";
@@ -134,9 +176,10 @@ class SaleController extends Controller
     public function index($id)
     {
         $books = Book::find($id);
-        $QAs = QA::where('book_id',$id)->orderBy("id","DESC")->get();
+        //$QAs = QA::where('book_id',$id)->orderBy("id","DESC");
 
-        return View("books.index")->withbooks($books)->withqas($QAs);
+        //return View("books.index")->withbooks($books)->withqas($QAs);
+        return View("books.index")->withbooks($books);
     }
 
     public function create()
