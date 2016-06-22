@@ -82,7 +82,7 @@
 <div class="col-md-8 col-md-offset-2 view" style="">
     <div class="col-md-10 col-md-offset-2  content">
 
-        <form action="{{ url("/sendQ",[$books->id,Auth::user()->id]) }}" id="form" method="post">
+        <form action="{{ url("/sendQ",[$books->id]) }}" id="form" method="post">
             <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
             <input name="id" type="hidden" value="{{$books->user_id}}"/>
             <input type="hidden" name="book_id" value="{{$books->id}}"/>

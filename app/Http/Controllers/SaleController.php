@@ -117,7 +117,7 @@ class SaleController extends Controller
         }
         return 1;
     }
-    public function sendQ($book_id,$user_id)
+    public function sendQ($book_id)
     {
         $rules = [
             'text_input' => 'required|captcha',
@@ -138,9 +138,9 @@ class SaleController extends Controller
             return Redirect::back()->witherrors($validator);
         }
         //這邊這邊這邊2015/06/01
-        $this->checkUserAndBook($user_id,$book_id);
+        $this->checkUserAndBook(Auth::user()->id,$book_id);
         QA::create([
-            'user_id' => $user_id,
+            'user_id' => Auth::user()->id,
             'book_id' => $book_id,
             'question'=> $note
         ]);
@@ -149,6 +149,20 @@ class SaleController extends Controller
     }
 
 
+
+    public function checkUserAndBook($book_id,$user_id)
+    {
+        $user = User::find($user_id);
+        if(!$user)
+        {
+            return view("errors.404");
+        }
+        $book = $user->books->find($book_id);
+        if(!$book)
+        {
+            return view("errors.404");
+        }
+    }
     public function cart($book_id,$user_id)
     {
         $user = User::find($user_id);
@@ -163,22 +177,9 @@ class SaleController extends Controller
         }
         return view("books.cart")->withbooks($book)->withuser($user);
     }
-    public function checkUserAndBook($book_id,$user_id)
-    {
-        $user = User::find($user_id);
-        if(!$user)
-        {
-            return view("errors.404");
-        }
-        $book = $user->books->find($book_id);
-        if(!$book)
-        {
-            return view("errors.404");
-        }
-    }
-
     public function index($id)
     {
+
         $books = Book::find($id);
         //$QAs = QA::where('book_id',$id)->orderBy("id","DESC");
 
