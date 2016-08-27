@@ -22,8 +22,8 @@
 
     </div>
     <div class="col-md-5 content" style="margin-top:20px;">
-        <b class="name">{{$books->name}}</b><br/><br/>
-        <span class="view_title">作者：</span><b>{{$books->author}}</b><br/>
+        <b class="name">{{$books->name}}</b>
+        <div><span class="view_title">作者：</span><b>{{$books->author}}</b></div>
         <span class="view_title">系所：</span><b>
             <?php
                 echo $books->depart2Know();

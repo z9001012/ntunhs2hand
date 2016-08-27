@@ -36,34 +36,37 @@ class Book extends Model
     }
     public function depart2Know()
     {
-        if($this->depart_id == "1")
-        {
-            return "資管系";
-        }
-        else if($this->depart_id=="2")
-        {
-            return "護理系";
-        }
-        else if($this->depart_id=="3")
-        {
-            return "生死系";
-        }
-        else if($this->depart_id=="4")
-        {
-            return "健管系";
-        }
-        else if($this->depart_id=="5")
-        {
-            return "運保系";
-        }
-        else if($this->depart_id=="6")
-        {
-            return "幼保系";
-        }
-        else
-        {
-            return "不分類";
-        }
+        //$arr
+        $arr = array("資管系","護理系","生死系","健管系","運保系","幼保系","不分類");
+        return $arr[$this->depart_id];
+        // if($this->depart_id == "1")
+        // {
+        //     return "資管系";
+        // }
+        // else if($this->depart_id=="2")
+        // {
+        //     return "護理系";
+        // }
+        // else if($this->depart_id=="3")
+        // {
+        //     return "生死系";
+        // }
+        // else if($this->depart_id=="4")
+        // {
+        //     return "健管系";
+        // }
+        // else if($this->depart_id=="5")
+        // {
+        //     return "運保系";
+        // }
+        // else if($this->depart_id=="6")
+        // {
+        //     return "幼保系";
+        // }
+        // else
+        // {
+        //     return "不分類";
+        // }
     }
 }
 

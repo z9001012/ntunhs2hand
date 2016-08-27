@@ -345,7 +345,7 @@ i.rightarrow {
 	width: 14%;
 }
 .name {
-	float: left;
+	/*float: left;*/
 	width: 79%;
 	margin-right: 3%;
 }

@@ -96,8 +96,10 @@ class SaleController extends Controller
             return Redirect::back()->witherrors($validator);
         }
         //CHECK QUSTION AND USER IS MATCH
+
         $checkQustionAndUser = $this->checkQustionAndUser($questionID);
-        if(!$checkQustionAndUser)
+
+        if($checkQustionAndUser)
         {
             return view("errors.404");
         }
