@@ -8,6 +8,7 @@ Route::get('/find',function(){
     return view("errors.soon");
 });
 
+
 //首頁});
 Route::get('/',"indexController@index");
 Route::get('/depart/{depart}',"indexController@indexDepart");
@@ -31,11 +32,15 @@ Route::post('/user/add/{code}',"UserController@postUserAdd");
 Route::get('/user/welcome',"UserController@welcome");
 
 //登入
-Route::get('/login',"LoginController@getLogin");
-Route::post('/login','LoginController@postLogin');
+Route::get('/login',"loginController@getLogin");
+Route::post('/login','loginController@postLogin');
 Route::get('/logout','Auth\AuthController@getLogout');
 
-Route::resource('/mybooks','BookController');
+//Route::resource('/mybooks','BookController');
+Route::get('/mybooks','BookController@index');
+Route::get('/mybooks/create','BookController@create');
+Route::post('/mybooks','BookController@store');
+
 Route::get('/mybooks/{id}/down','BookController@downType');
 Route::get('mybooks/{id}/up','BookController@upType');
 
