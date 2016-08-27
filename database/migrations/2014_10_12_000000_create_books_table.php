@@ -47,6 +47,29 @@ class CreateBooksTable extends Migration
         });
 
 
+        Schema::create('depart', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token')->index();
+            $table->timestamp('created_at');
+        });
+
+        Schema::create('QAs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();//買家
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('book_id')->unsigned();
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->string('question');
+            $table->string('answer');
+            $table->timestamps();
+        });
+
     }
 
     public function down()
