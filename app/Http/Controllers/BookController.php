@@ -92,8 +92,7 @@ class BookController extends Controller
             'cover' => '封面圖片'
         );
 
-        $path = str_random(30).".".Input::file("cover")->getClientOriginalExtension();
-        $to = "cover";
+
         $post = Input::all();
         $validator = Validator::make($post,$rules);
         $validator->setAttributeNames($attribute);
@@ -101,6 +100,8 @@ class BookController extends Controller
         {
             return Redirect::back()->witherrors($validator)->withInput();
         }
+        $path = str_random(30).".".Input::file("cover")->getClientOriginalExtension();
+        $to = "cover";
         if(Input::hasFile('cover'))
         {
             Book::create([

@@ -5,13 +5,17 @@
 </h1>
 
 <ul id="filters" class="clearfix">
-	<li><a href="{{ url('') }}"><span class="filter {{ Request::path()=="/" ? ' active' : ''}}" data-filter="資管系 護理系 生死系 健管系 運保系 幼保系">All</span></a></li> /
+	<li><a href="{{ url('') }}"><span class="filter {{ Request::path()=="/" ? ' active' : ''}}" data-filter="資管系 護理系 生死系 健管系 運保系 幼保系 休健系 長期照護系 聽語系">All</span></a></li> /
 	<li><a href="{{ url('/depart/1') }}"><span class="filter {{ Request::path()=="1" ? ' active' : ''}}">資管系</span></a></li> /
 	<li><a href="{{ url('/depart/2') }}"><span class="filter {{ Request::path()=="2" ? ' active' : ''}}">護理系</span></a></li> /
 	<li><a href="{{ url('/depart/3') }}"><span class="filter {{ Request::path()=="3" ? ' active' : ''}}">生死系</span></a></li> /
 	<li><a href="{{ url('/depart/4') }}"><span class="filter {{ Request::path()=="4" ? ' active' : ''}}">健管系</span></a></li> /
 	<li><a href="{{ url('/depart/5') }}"><span class="filter {{ Request::path()=="5" ? ' active' : ''}}">運保系</span></a></li> /
-    <li><a href="{{ url('/depart/6') }}"><span class="filter {{ Request::path()=="6" ? ' active' : ''}}">幼保系</span></a></li>
+    <li><a href="{{ url('/depart/6') }}"><span class="filter {{ Request::path()=="6" ? ' active' : ''}}">幼保系</span></a></li> /
+	<li><a href="{{ url('/depart/7') }}"><span class="filter {{ Request::path()=="7" ? ' active' : ''}}">休健系</span></a></li> /
+	<li><a href="{{ url('/depart/8') }}"><span class="filter {{ Request::path()=="8" ? ' active' : ''}}">長期照護系</span></a></li> /
+	<li><a href="{{ url('/depart/9') }}"><span class="filter {{ Request::path()=="9" ? ' active' : ''}}">聽語系</span></a></li> /
+
 </ul>
 
 <div class="row col-md-12" align="center">
