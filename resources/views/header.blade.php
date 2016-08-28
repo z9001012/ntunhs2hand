@@ -7,8 +7,6 @@
 			<ul class="cl-effect-3">
 				<li><a href="{{ URL('/') }}">二手書拍賣</a></li>
 				<li><a href="{{ URL('/find') }}">遺失物尋找</a></li>
-				<li><a href="{{ URL('/readme') }}">Readme</a></li>
-
 			</ul>
 		</div>
 		<div class="login" style="float:right" >

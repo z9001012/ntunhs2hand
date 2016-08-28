@@ -99,7 +99,7 @@ class SaleController extends Controller
 
         $checkQustionAndUser = $this->checkQustionAndUser($questionID);
 
-        if($checkQustionAndUser)
+        if(!$checkQustionAndUser)
         {
             return view("errors.404");
         }

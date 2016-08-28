@@ -19,6 +19,12 @@ class CreateBooksTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        Schema::create('depart', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+        });
+
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -47,11 +53,6 @@ class CreateBooksTable extends Migration
         });
 
 
-        Schema::create('depart', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
-        });
 
         Schema::create('password_resets', function (Blueprint $table) {
             $table->string('email')->index();

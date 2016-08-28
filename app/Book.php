@@ -36,8 +36,9 @@ class Book extends Model
     }
     public function depart2Know()
     {
+//        return $this->depart_id;
         //$arr
-        $arr = array("資管系","護理系","生死系","健管系","運保系","幼保系","不分類");
+        $arr = array("","資管系","護理系","生死系","健管系","運保系","幼保系","休健系","長照系","聽語系","不分系");
         return $arr[$this->depart_id];
         // if($this->depart_id == "1")
         // {
